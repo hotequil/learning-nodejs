@@ -20,4 +20,12 @@ const get = async () => {
     return rows;
 };
 
-module.exports = { get };
+const create = async (developer) => {
+    const connection = await connect();
+    const query = `INSERT INTO ${table} (name, age) VALUES (?, ?)`;
+    const values = [developer.name, developer.age];
+
+    await connection.query(query, values);
+}
+
+module.exports = { get, create };
