@@ -20,12 +20,24 @@ const get = async () => {
     return rows;
 };
 
-const create = async (developer) => {
+const create = async developer => {
     const connection = await connect();
     const query = `INSERT INTO ${table} (name, age) VALUES (?, ?)`;
     const values = [developer.name, developer.age];
 
     await connection.query(query, values);
-}
+};
 
-module.exports = { get, create };
+const update = async ({ id, name, age }) => {
+    const connection = await connect();
+
+    await connection.query(`UPDATE ${table} SET name='${name}', age=${age} WHERE id=${id}`);
+};
+
+const remove = async id => {
+    const connection = await connect();
+
+    await connection.query(`DELETE FROM ${table} WHERE id=${id}`);
+};
+
+module.exports = { get, create, update, remove };
