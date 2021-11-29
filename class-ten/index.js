@@ -1,6 +1,8 @@
 const { MongoClient } = require('mongodb');
 const { URIMongoDBAdaLovelace } = require("../.env");
 const client = new MongoClient(URIMongoDBAdaLovelace, { useNewUrlParser: true, useUnifiedTopology: true });
+const ASC = 1;
+const DESC = -1;
 
 client.connect((error, connection) => {
      if(error) throw error;
@@ -17,7 +19,17 @@ client.connect((error, connection) => {
     //     connection.close();
     // });
 
-    collection.find({ name: 'Angular' })
+    // collection.find({ name: 'Angular' })
+    //           .toArray((error, response) => {
+    //               if(error) throw error;
+    //
+    //               console.log(response);
+    //
+    //               connection.close();
+    //           });
+
+    collection.find()
+              .sort({ name: DESC })
               .toArray((error, response) => {
                   if(error) throw error;
 
