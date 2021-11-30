@@ -28,15 +28,16 @@ client.connect((error, connection) => {
     //               connection.close();
     //           });
 
-    // collection.find()
-    //           .sort({ name: DESC })
-    //           .toArray((error, response) => {
-    //               if(error) throw error;
-    //
-    //               console.log(response);
-    //
-    //               connection.close();
-    //           });
+    collection.find()
+              .sort({ name: DESC })
+              .limit(5)
+              .toArray((error, response) => {
+                  if(error) throw error;
+
+                  console.log(response, response.length);
+
+                  connection.close();
+              });
 
     // collection.deleteOne({ name: 'React' }, (error, response) => {
     //     if(error) throw error;
@@ -46,11 +47,11 @@ client.connect((error, connection) => {
     //     connection.close();
     // });
 
-    collection.updateOne({ name: 'Vue' }, { $set: { name: 'VueJS', price: 50 } }, (error, response) => {
-        if(error) throw error;
-
-        console.log('Updated data!', response);
-
-        connection.close();
-    });
+    // collection.updateOne({ name: 'Vue' }, { $set: { name: 'VueJS', price: 50 } }, (error, response) => {
+    //     if(error) throw error;
+    //
+    //     console.log('Updated data!', response);
+    //
+    //     connection.close();
+    // });
 });
