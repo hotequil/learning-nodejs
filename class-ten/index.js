@@ -28,13 +28,21 @@ client.connect((error, connection) => {
     //               connection.close();
     //           });
 
-    collection.find()
-              .sort({ name: DESC })
-              .toArray((error, response) => {
-                  if(error) throw error;
+    // collection.find()
+    //           .sort({ name: DESC })
+    //           .toArray((error, response) => {
+    //               if(error) throw error;
+    //
+    //               console.log(response);
+    //
+    //               connection.close();
+    //           });
 
-                  console.log(response);
+    collection.deleteOne({ name: 'React' }, (error, response) => {
+        if(error) throw error;
 
-                  connection.close();
-              });
+        console.log('Deleted!', response);
+
+        connection.close();
+    });
 });
