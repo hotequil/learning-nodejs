@@ -38,10 +38,18 @@ client.connect((error, connection) => {
     //               connection.close();
     //           });
 
-    collection.deleteOne({ name: 'React' }, (error, response) => {
+    // collection.deleteOne({ name: 'React' }, (error, response) => {
+    //     if(error) throw error;
+    //
+    //     console.log('Deleted!', response);
+    //
+    //     connection.close();
+    // });
+
+    collection.updateOne({ name: 'Vue' }, { $set: { name: 'VueJS', price: 50 } }, (error, response) => {
         if(error) throw error;
 
-        console.log('Deleted!', response);
+        console.log('Updated data!', response);
 
         connection.close();
     });
